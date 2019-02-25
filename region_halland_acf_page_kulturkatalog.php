@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page Kulturkatalog
 	Description: ACF-fält för extra fält nederst på en kultur-sida
-	Version: 1.0.0
+	Version: 1.1.0
 	Author: Roland Hydén
 	License: Free to use
 	Text Domain: regionhalland
@@ -33,7 +33,7 @@
 	        'labels' => $labels,
 	        'rewrite' => array('slug' => 'kulturkatalog'),
 			'show_ui' => true,
-			'has_archive' => false,
+			'has_archive' => true,
 			'publicly_queryable' => true,
 			'public' => true,
 			'query_var' => false,
