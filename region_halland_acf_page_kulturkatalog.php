@@ -6,9 +6,9 @@
 	/*
 	Plugin Name: Region Halland ACF Page Kulturkatalog
 	Description: ACF-fält för extra fält nederst på en kultur-sida
-	Version: 1.1.0
+	Version: 1.2.0
 	Author: Roland Hydén
-	License: Free to use
+	License: MIT
 	Text Domain: regionhalland
 	*/
 
@@ -94,10 +94,10 @@
 			            'default_value' => array(
 			            ),
 			            'allow_null' => 0,
-			            'multiple' => 0,
+			            'multiple' => 1,
 			            'ui' => 0,
 			            'ajax' => 0,
-			            'return_format' => 'value',
+			            'return_format' => 'array',
 			            'placeholder' => '',
 			        ),
 			        1 => array(
@@ -238,14 +238,17 @@
 
 	}
 
-	function get_region_halland_acf_page_kulturkatalog_type_object() {
-		return get_field_object('field_1000030');
-	}
-
-	// Returnera namnet på vald typ
-	function get_region_halland_acf_page_kulturkatalog_type_name() {
-		$field_type = get_region_halland_acf_page_kulturkatalog_type_object();
-		return $field_type['choices'][get_field('name_1000031')];
+	// Returnera namnen på vald(a) typ
+	function get_region_halland_acf_page_kulturkatalog_type_labels() {
+		$field_object = get_field_object('field_1000030');;
+		$field_values = $field_object['value'];
+		$myFieldLabels = array();
+		foreach ($field_values as $value) {
+			array_push($myFieldLabels, array(
+	           'label'   => $value['label']
+	        ));
+		}
+		return $myFieldLabels;
 	}
 
 	// Returnera målgrupp
@@ -276,6 +279,65 @@
 	// Returnera pris
 	function get_region_halland_acf_page_kulturkatalog_pris() {
 		return get_field('name_1000044');
+	}
+
+	function get_region_halland_acf_page_kulturkatalog_items($myAntal = 3) {
+		
+		// Preparerar array för att hämta ut nyheter
+		$args = array( 
+			'post_type' => 'kulturkatalog',
+			'posts_per_page' => $myAntal,
+		);
+
+		// Hämta valda nyheter
+		$myPages = get_posts($args);
+		
+		foreach ($myPages as $page) {
+
+			// Lägg till sidans url 	
+			$page->url = get_permalink($page->ID);
+
+			// Bild
+			$page->image = get_the_post_thumbnail($page->ID);
+			$page->image_url = get_the_post_thumbnail_url($page->ID);
+			
+			// Publicerad datum
+			$page->date = get_the_date('Y-m-d', $page->ID);
+
+			// Typ, dvs labels
+			$field_object = get_field_object('field_1000030', $page->ID);;
+			$field_values = $field_object['value'];
+			$myFieldLabels = array();
+			foreach ($field_values as $value) {
+				array_push($myFieldLabels, array(
+		           'label'   => $value['label']
+		        ));
+			}
+			$page->labels = $myFieldLabels;
+
+			// Målgrupp
+			$page->malgrupp = get_field('name_1000034', $page->ID);
+
+			// Publik
+			$page->publik = get_field('name_1000036', $page->ID);
+
+			// Speltid
+			$page->speltid = get_field('name_1000038', $page->ID);
+	        
+	        // Lokal
+	        $page->lokal = get_field('name_1000040', $page->ID);
+
+	        // Period
+	        $page->period = get_field('name_1000042', $page->ID);
+
+	        // Pris
+	        $page->pris = get_field('name_1000044', $page->ID);
+		
+		}
+		
+		// Returnera array med alla poster
+		return $myPages;
+
 	}
 	
 	// Metod som anropas när pluginen aktiveras
