@@ -20,13 +20,13 @@
 		
 		// Vilka labels denna post_type ska ha
 		$labels = array(
-		        'name'                  => _x( 'Kulturkatalog', 'Post type general name', 'textdomain' ),
-		        'singular_name'         => _x( 'Kulturkatalog', 'Post type singular name', 'textdomain' ),
-		        'menu_name'             => _x( 'Kulturkatalog', 'Admin Menu text', 'textdomain' ),
-		        'add_new'               => __( 'Lägg till ny', 'textdomain' ),
-        		'add_new_item'          => __( 'Lägg till ny', 'textdomain' ),
-        		'edit_item'          	=> __( 'Editera', 'textdomain' )
-		    );
+	        'name' => _x( 'Kulturkatalog', 'Post type general name', 'textdomain' ),
+	        'singular_name' => _x( 'Kulturkatalog', 'Post type singular name', 'textdomain' ),
+	        'menu_name' => _x( 'Kulturkatalog', 'Admin Menu text', 'textdomain' ),
+	        'add_new' => __( 'Lägg till ny', 'textdomain' ),
+    		'add_new_item' => __( 'Lägg till ny', 'textdomain' ),
+    		'edit_item' => __( 'Editera', 'textdomain' )
+	    );
 		
 		// Inställningar för denna post_type 
 	    $args = array(
@@ -238,7 +238,7 @@
 
 	}
 
-	// Returnera namnen på vald(a) typ
+	// Returnera namnen på vald(a) labels
 	function get_region_halland_acf_page_kulturkatalog_type_labels() {
 		$field_object = get_field_object('field_1000030');;
 		$field_values = $field_object['value'];
@@ -281,12 +281,12 @@
 		return get_field('name_1000044');
 	}
 
-	function get_region_halland_acf_page_kulturkatalog_items($myAntal = 3) {
+	function get_region_halland_acf_page_kulturkatalog_items($myAntal = -1) {
 		
 		// Preparerar array för att hämta ut nyheter
 		$args = array( 
 			'post_type' => 'kulturkatalog',
-			'posts_per_page' => $myAntal,
+			'posts_per_page' => $myAntal
 		);
 
 		// Hämta valda nyheter
@@ -332,18 +332,145 @@
 
 	        // Pris
 	        $page->pris = get_field('name_1000044', $page->ID);
-		
+			
+			// Första bokstaven som sträng
+			$strFirstLetter = strtoupper(mb_substr($page->post_title, 0, 1));
+	        $page->first_letter = $strFirstLetter;
+			
+			$page->first_letter_int = region_halland_acf_page_kulturkatalog_first_letter($strFirstLetter);
+			
 		}
 		
 		// Returnera array med alla poster
 		return $myPages;
 
 	}
+
+	// Returnera en multiarray för alla labels
+	function get_region_halland_acf_page_kulturkatalog_label_items($myAntal = -1) {
+		
+		// Preparerar array för att hämta ut nyheter
+		$args = array( 
+			'post_type' => 'kulturkatalog',
+			'posts_per_page' => $myAntal
+		);
+
+		// Hämta valda sidor
+		$myPages = get_posts($args);
+	
+		// Loopa igenom alla sidor		
+		foreach ($myPages as $page) {
+
+			// Lägg till sidans url 	
+			$page->url = get_permalink($page->ID);
+
+			// Typ, dvs labels
+			$field_object = get_field_object('field_1000030', $page->ID);;
+			$field_values = $field_object['value'];
+			$myFieldLabels = array();
+			foreach ($field_values as $value) {
+				array_push($myFieldLabels, array(
+		           'label'   => $value['label']
+		        ));
+			}
+			$page->labels = $myFieldLabels;
+
+			// Målgrupp
+			$page->malgrupp = get_field('name_1000034', $page->ID);
+
+		}
+		
+		// Preparera en multiarray
+		$myDans = array();
+		$myFilm = array();
+		$myKonst = array();
+		$myKulturarv = array();
+		$myMusik = array();
+		$mySlojd = array();
+		$myTeater = array();
+		
+		// Loopa igenom alla sidor och attacha till respektive label-array
+		foreach ($myPages as $page) {
+			$myPage = $page;
+			foreach ($page->labels as $label) {
+				if ($label['label'] == "Dans") {
+					array_push($myDans, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Film") {
+					array_push($myFilm, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Konst") {
+					array_push($myKonst, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Kulturarv") {
+					array_push($myKulturarv, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Musik") {
+					array_push($myMusik, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Slöjd") {
+					array_push($mySlojd, array(
+			           'page'  => $myPage
+			        ));
+				}
+				if ($label['label'] == "Teater") {
+					array_push($myTeater, array(
+			           'page'  => $myPage
+			        ));
+				}
+			}
+		}
+		
+		// Dela upp i arrayer per label	
+		$myMultiPages = array();
+		$myMultiPages['dans'] = $myDans;
+		$myMultiPages['film'] = $myFilm;
+		$myMultiPages['konst'] = $myKonst;
+		$myMultiPages['kulturarv'] = $myKulturarv;
+		$myMultiPages['musik'] = $myMusik;
+		$myMultiPages['slojd'] = $mySlojd;
+		$myMultiPages['teater'] = $myTeater;
+		
+		// Returnera array med alla poster
+		return $myMultiPages;
+
+	}
+
+	// Första bokstaven som nummer
+	function region_halland_acf_page_kulturkatalog_first_letter($strFirstLetter) {
+		switch ($strFirstLetter) {
+		     case 'Å':
+		         $intFirstLetter = 27;
+		         break;
+		     case 'Ä':
+		         $intFirstLetter = 28;
+		         break;
+		     case 'Ö':
+		         $intFirstLetter = 29;
+		         break;
+		     default:
+				$intFirstLetter = ord(strtolower($strFirstLetter)) - 96;
+		 }
+
+		 // Returnera bokstav som nummer
+		 return $intFirstLetter;
+	}
+
 	
 	// Metod som anropas när pluginen aktiveras
 	function region_halland_acf_page_kulturkatalog_activate() {
 		
-		// Vi aktivering, registrera post_type "utbildning"
+		// Vid aktivering, registrera post_type "kulturkatalog"
 		region_halland_register_kulturkatalog();
 
 		// Tala om för wordpress att denna post_type finns

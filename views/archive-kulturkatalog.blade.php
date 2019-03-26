@@ -2,27 +2,78 @@
 
 @section('content')
 
-<main class="bg-white pt-12 pb-8" id="main">
-	<div class="container mx-auto px-4">
-		<div class="w-full mx-auto">
-			@php($myItems = get_region_halland_acf_page_kulturkatalog_items())
-			@foreach($myItems as $item)
-			<?php var_dump($item->labels); ?>
-				<h2>{{ $item->post_title }}</h2><br>
-				<span>{{ $item->post_content }}</span><br><br>
-				<span>
-					<strong>Typ:</strong>
-					@foreach($item->labels as $label)
-						{{ $label['label'] }}
-					@endforeach
-				</span><br>
-				<span><strong>Målgrupp:</strong> {{ $item->malgrupp }}</span><br>
-				<span><strong>Publik:</strong> {{ $item->publik }}</span><br>
-				<span><strong>Speltid:</strong> {{ $item->speltid }}</span><br>
-				<span><strong>Lokal:</strong> {{ $item->lokal }}</span><br>
-				<span><strong>Period:</strong> {{ $item->period }}</span><br>
-				<span><strong>Pris:</strong> {{ $item->pris }}</span><br><br><br>
-			@endforeach	
+<main class="center" id="main" style="max-width: 1440px;">
+	<div class="left-align px4 pt3 pb2">
+		<div class="">
+			@php($myItems = get_region_halland_acf_page_kulturkatalog_label_items())
+			<ul class="rh-lists">
+				<h1 class="pb2 rh-lists-title">Kulturprogram</h1>
+				
+				<h3 class="pb2 rh-lists-title">Dans</h3>
+				@foreach($myItems['dans'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				<?php var_dump($item['page']->labels); ?>
+			
+				@endforeach
+				
+				<h3 class="pb2 rh-lists-title">Film</h3>
+				@foreach($myItems['film'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+
+				<h3 class="pb2 rh-lists-title">Konst</h3>
+				@foreach($myItems['konst'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+
+				<h3 class="pb2 rh-lists-title">Kulturarv</h3>
+				@foreach($myItems['kulturarv'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+
+				<h3 class="pb2 rh-lists-title">Musik</h3>
+				@foreach($myItems['musik'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+
+				<h3 class="pb2 rh-lists-title">Slöjd</h3>
+				@foreach($myItems['slojd'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+
+				<h3 class="pb2 rh-lists-title">Teater</h3>
+				@foreach($myItems['teater'] as $item)
+					<li class="rh-lists-items">
+						<p class="rh-lists-items-left"><a href="{{ $item['page']->url }}" style="color:black; text-decoration: none;">{{ $item['page']->post_title }}</a></p>
+						<p class="rh-lists-items-right"><strong>Målgrupp:</strong> {{ $item['page']->malgrupp }}</p>
+						<hr class="rh-lists-items-hr">
+					</li>
+				@endforeach
+			</ul>
 		</div>
 	</div>
 </main>
