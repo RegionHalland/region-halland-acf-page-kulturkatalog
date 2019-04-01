@@ -1,16 +1,16 @@
 # Visa kulturhändelser
 
-## Hur man använder Region Hallands plugin "region-halland-acf-page-kulturkatalog"
+## Hur man använder Region Hallands plugin "region-halland-acf-page-kulturprogram"
 
-Nedan följer instruktioner hur du kan använda pluginet "region-halland-acf-page-kulturkatalog".
+Nedan följer instruktioner hur du kan använda pluginet "region-halland-acf-page-kulturprogram".
 
 
 ## Användningsområde
 
 Denna plugin ger möjlighet att skapa poster med kulturhändelser
 
-OBS! Enskilda poster visas på sidan "single-kulturkatalog.blade.php"
-OBS! Listan med poster visas på sidan "archive-kulturkatalog.blade.php"
+OBS! Enskilda poster visas på sidan "single-kulturprogram.blade.php"
+OBS! Listan med poster visas på sidan "archive-kulturprogram.blade.php"
 
 Båda dessa filer finns med i foldern "views"
 
@@ -26,7 +26,7 @@ C) Aktivera pluginet inifrån Wordpress admin
 ## Hämta hem pluginet via Git
 
 ```sh
-git clone https://github.com/RegionHalland/region-halland-acf-page-kulturkatalog.git
+git clone https://github.com/RegionHalland/region-halland-acf-page-kulturprogram.git
 ```
 
 
@@ -40,7 +40,7 @@ Repositories = var pluginen är lagrad, i detta fall på github
 "repositories": [
   {
     "type": "vcs",
-    "url": "https://github.com/RegionHalland/region-halland-acf-page-kulturkatalog.git"
+    "url": "https://github.com/RegionHalland/region-halland-acf-page-kulturprogram.git"
   },
 ],
 ```
@@ -50,7 +50,7 @@ OBS! Justera så att du hämtar aktuell version.
 
 ```sh
 "require": {
-  "regionhalland/region-halland-acf-page-kulturkatalog": "1.0.0"
+  "regionhalland/region-halland-acf-page-kulturprogram": "1.0.0"
 },
 ```
 
@@ -61,18 +61,19 @@ OBS! Justera så att du hämtar aktuell version.
 <ol>
   <li>
       Typ:
-      @php($arrLabels = get_region_halland_acf_page_kulturkatalog_type_labels())  
+      @php($arrLabels = get_region_halland_acf_page_kulturprogram_type_labels())  
       @if(isset($arrLabels))
         @foreach ($arrLabels as $label)
           {{ $label['label'] }}, 
         @endforeach
       @endif
   </li>
-  <li>Publik: {{ get_region_halland_acf_page_kulturkatalog_publik() }}</li>
-  <li>Speltid: {{ get_region_halland_acf_page_kulturkatalog_speltid() }}</li>
-  <li>Lokal: {{ get_region_halland_acf_page_kulturkatalog_lokal() }}</li>
-  <li>Turnéperiod: {{ get_region_halland_acf_page_kulturkatalog_turne_period() }}</li>
-  <li>Pris: {{ get_region_halland_acf_page_kulturkatalog_pris() }}</li>
+  <li>Målgrupp: {{ get_region_halland_acf_page_kulturprogram_malgrupp() }}</li>
+  <li>Publik: {{ get_region_halland_acf_page_kulturprogram_publik() }}</li>
+  <li>Längd: {{ get_region_halland_acf_page_kulturprogram_langd() }}</li>
+  <li>Lokal: {{ get_region_halland_acf_page_kulturprogram_lokal() }}</li>
+  <li>Turnéperiod: {{ get_region_halland_acf_page_kulturprogram_turne_period() }}</li>
+  <li>Pris: {{ get_region_halland_acf_page_kulturprogram_pris() }}</li>
 </ol>
 ```
 
@@ -198,7 +199,7 @@ array (size=3)
 
 ## Special-ista för enskilda label-arrayer via "Blade"
 
-- OBS! Det finns en array för respektive label, dvs för dans, film, konst, kulturarv, musik, slöjd och teater. Nedan exempel för arrayen dans. Övriga fungerar likadant. Notera att arrayen för slöjd är med o, dvs slojd
+- OBS! Det finns en array för respektive label, dvs för dans, film, konst, kulturarv, musik, slöjd och teater. Nedan exempel för arrayen dans. Övriga fungerar likadant. Notera att arrayen för slöjd stavas med o, dvs slojd
 
 ```sh
 <h3>Dans</h3>
@@ -289,6 +290,10 @@ array (size=2)
 
 
 ## Versionhistorik
+
+### 2.0.0
+- Ändrat namn från kulturkatalog till kulturprogram
+- Fältet speltid heter istället längd
 
 ### 1.3.0
 - Special-lista med multiarrayer för varje label

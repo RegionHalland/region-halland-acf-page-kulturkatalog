@@ -1,28 +1,28 @@
 <?php
 
 	/**
-	 * @package Region Halland ACF Page Kulturkatalog
+	 * @package Region Halland ACF Page Kulturprogram
 	 */
 	/*
-	Plugin Name: Region Halland ACF Page Kulturkatalog
+	Plugin Name: Region Halland ACF Page Kulturprogram
 	Description: ACF-fält för extra fält nederst på en kultur-sida
-	Version: 1.2.0
+	Version: 2.0.0
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
 	*/
 
-	// vid 'init', anropa funktionen region_halland_register_utbildning()
-	add_action( 'init', 'region_halland_register_kulturkatalog' );
+	// vid 'init', anropa funktionen region_halland_register_kulturprogram()
+	add_action( 'init', 'region_halland_register_kulturprogram' );
 
 	// Denna funktion registrerar en ny post_type och gör den synlig i wp-admin
-	function region_halland_register_kulturkatalog() {
+	function region_halland_register_kulturprogram() {
 		
 		// Vilka labels denna post_type ska ha
 		$labels = array(
-	        'name' => _x( 'Kulturkatalog', 'Post type general name', 'textdomain' ),
-	        'singular_name' => _x( 'Kulturkatalog', 'Post type singular name', 'textdomain' ),
-	        'menu_name' => _x( 'Kulturkatalog', 'Admin Menu text', 'textdomain' ),
+	        'name' => _x( 'Kulturprogram', 'Post type general name', 'textdomain' ),
+	        'singular_name' => _x( 'Kulturprogram', 'Post type singular name', 'textdomain' ),
+	        'menu_name' => _x( 'Kulturprogram', 'Admin Menu text', 'textdomain' ),
 	        'add_new' => __( 'Lägg till ny', 'textdomain' ),
     		'add_new_item' => __( 'Lägg till ny', 'textdomain' ),
     		'edit_item' => __( 'Editera', 'textdomain' )
@@ -31,7 +31,7 @@
 		// Inställningar för denna post_type 
 	    $args = array(
 	        'labels' => $labels,
-	        'rewrite' => array('slug' => 'kulturkatalog'),
+	        'rewrite' => array('slug' => 'kulturprogram'),
 			'show_ui' => true,
 			'has_archive' => true,
 			'publicly_queryable' => true,
@@ -42,15 +42,15 @@
 	    );
 
 	    // Registrera post_type
-	    register_post_type('kulturkatalog', $args);
+	    register_post_type('kulturprogram', $args);
 	    
 	}
 
 	// Anropa function om ACF är installerad
-	add_action('acf/init', 'my_acf_add_page_kultutkatalog_field_groups');
+	add_action('acf/init', 'my_acf_add_page_kulturprogram_field_groups');
 
 	// Function för att lägga till "field groups"
-	function my_acf_add_page_kultutkatalog_field_groups() {
+	function my_acf_add_page_kulturprogram_field_groups() {
 
 		// Om funktionen existerar
 		if (function_exists('acf_add_local_field_group')):
@@ -59,7 +59,7 @@
 			acf_add_local_field_group(array(
 			    
 			    'key' => 'group_1000029',
-			    'title' => 'Kultutkatalog',
+			    'title' => 'Kulturprogram',
 			    'fields' => array(
 			        0 => array(
 			        	'key' => 'field_1000030',
@@ -140,10 +140,10 @@
 			        ),
 			        3 => array(
 			        	'key' => 'field_1000037',
-			            'label' => __('Speltid', 'regionhalland'),
+			            'label' => __('Längd', 'regionhalland'),
 			            'name' => 'name_1000038',
 			            'type' => 'textarea',
-			            'instructions' => __('Beskriv speltid. Max 200 tecken.', 'regionhalland'),
+			            'instructions' => __('Ange längd. Max 200 tecken.', 'regionhalland'),
 			            'required' => 0,
 			            'conditional_logic' => 0,
 			            'wrapper' => array(
@@ -197,7 +197,7 @@
 			        ),
 			        6 => array(
 			        	'key' => 'field_1000043',
-			            'label' => __('Pris', 'regionhalland'),
+			            'label' => __('Pris i Halland', 'regionhalland'),
 			            'name' => 'name_1000044',
 			            'type' => 'textarea',
 			            'instructions' => __('Beskriv pris. Max 200 tecken.', 'regionhalland'),
@@ -220,7 +220,7 @@
 			            0 => array(
 			                'param' => 'post_type',
 			                'operator' => '==',
-			                'value' => 'kulturkatalog',
+			                'value' => 'kulturprogram',
 			            ),
 			        )
 			    ),
@@ -239,7 +239,7 @@
 	}
 
 	// Returnera namnen på vald(a) labels
-	function get_region_halland_acf_page_kulturkatalog_type_labels() {
+	function get_region_halland_acf_page_kulturprogram_type_labels() {
 		$field_object = get_field_object('field_1000030');;
 		$field_values = $field_object['value'];
 		$myFieldLabels = array();
@@ -252,40 +252,40 @@
 	}
 
 	// Returnera målgrupp
-	function get_region_halland_acf_page_kulturkatalog_malgrupp() {
+	function get_region_halland_acf_page_kulturprogram_malgrupp() {
 		return get_field('name_1000034');
 	}
 
 	// Returnera publik
-	function get_region_halland_acf_page_kulturkatalog_publik() {
+	function get_region_halland_acf_page_kulturprogram_publik() {
 		return get_field('name_1000036');
 	}
 	
-	// Returnera speltid
-	function get_region_halland_acf_page_kulturkatalog_speltid() {
+	// Returnera längd
+	function get_region_halland_acf_page_kulturprogram_langd() {
 		return get_field('name_1000038');
 	}
 
 	// Returnera lokal
-	function get_region_halland_acf_page_kulturkatalog_lokal() {
+	function get_region_halland_acf_page_kulturprogram_lokal() {
 		return get_field('name_1000040');
 	}
 
 	// Returnera turnéperiod
-	function get_region_halland_acf_page_kulturkatalog_turne_period() {
+	function get_region_halland_acf_page_kulturprogram_turne_period() {
 		return get_field('name_1000042');
 	}
 
 	// Returnera pris
-	function get_region_halland_acf_page_kulturkatalog_pris() {
+	function get_region_halland_acf_page_kulturprogram_pris() {
 		return get_field('name_1000044');
 	}
 
-	function get_region_halland_acf_page_kulturkatalog_items($myAntal = -1) {
+	function get_region_halland_acf_page_kulturprogram_items($myAntal = -1) {
 		
 		// Preparerar array för att hämta ut nyheter
 		$args = array( 
-			'post_type' => 'kulturkatalog',
+			'post_type' => 'kulturprogram',
 			'posts_per_page' => $myAntal
 		);
 
@@ -321,8 +321,8 @@
 			// Publik
 			$page->publik = get_field('name_1000036', $page->ID);
 
-			// Speltid
-			$page->speltid = get_field('name_1000038', $page->ID);
+			// Längd
+			$page->langd = get_field('name_1000038', $page->ID);
 	        
 	        // Lokal
 	        $page->lokal = get_field('name_1000040', $page->ID);
@@ -337,7 +337,7 @@
 			$strFirstLetter = strtoupper(mb_substr($page->post_title, 0, 1));
 	        $page->first_letter = $strFirstLetter;
 			
-			$page->first_letter_int = region_halland_acf_page_kulturkatalog_first_letter($strFirstLetter);
+			$page->first_letter_int = region_halland_acf_page_kulturprogram_first_letter($strFirstLetter);
 			
 		}
 		
@@ -347,11 +347,11 @@
 	}
 
 	// Returnera en multiarray för alla labels
-	function get_region_halland_acf_page_kulturkatalog_label_items($myAntal = -1) {
+	function get_region_halland_acf_page_kulturprogram_label_items($myAntal = -1) {
 		
 		// Preparerar array för att hämta ut nyheter
 		$args = array( 
-			'post_type' => 'kulturkatalog',
+			'post_type' => 'kulturprogram',
 			'posts_per_page' => $myAntal
 		);
 
@@ -447,7 +447,7 @@
 	}
 
 	// Första bokstaven som nummer
-	function region_halland_acf_page_kulturkatalog_first_letter($strFirstLetter) {
+	function region_halland_acf_page_kulturprogram_first_letter($strFirstLetter) {
 		switch ($strFirstLetter) {
 		     case 'Å':
 		         $intFirstLetter = 27;
@@ -468,10 +468,10 @@
 
 	
 	// Metod som anropas när pluginen aktiveras
-	function region_halland_acf_page_kulturkatalog_activate() {
+	function region_halland_acf_page_kulturprogram_activate() {
 		
-		// Vid aktivering, registrera post_type "kulturkatalog"
-		region_halland_register_kulturkatalog();
+		// Vid aktivering, registrera post_type "kulturprogram"
+		region_halland_register_kulturprogram();
 
 		// Tala om för wordpress att denna post_type finns
 		// Detta gör att permalink fungerar
@@ -479,14 +479,14 @@
 	}
 
 	// Metod som anropas när pluginen avaktiveras
-	function region_halland_acf_page_kulturkatalog_deactivate() {
+	function region_halland_acf_page_kulturprogram_deactivate() {
 		// Ingenting just nu...
 	}
 	
 	// Vilken metod som ska anropas när pluginen aktiveras
-	register_activation_hook( __FILE__, 'region_halland_acf_page_kulturkatalog_activate');
+	register_activation_hook( __FILE__, 'region_halland_acf_page_kulturprogram_activate');
 
 	// Vilken metod som ska anropas när pluginen avaktiveras
-	register_deactivation_hook( __FILE__, 'region_halland_acf_page_kulturkatalog_deactivate');
+	register_deactivation_hook( __FILE__, 'region_halland_acf_page_kulturprogram_deactivate');
 
 ?>
