@@ -83,7 +83,7 @@ OBS! Justera så att du hämtar aktuell version.
 - OBS! Som default listas alla, men du kan ange valfritt antal när du anropar funktionen.
 
 ```sh
-@php($myItems = get_region_halland_acf_page_kulturkatalog_items())
+@php($myItems = get_region_halland_acf_page_kulturprogram_items())
 @foreach($myItems as $item)
   <h2>{{ $item->post_title }}</h2><br>
   <span>{{ $item->post_content }}</span><br><br>
@@ -127,13 +127,13 @@ array (size=3)
       public 'post_modified_gmt' => string '2019-03-13 13:43:36' (length=19)
       public 'post_content_filtered' => string '' (length=0)
       public 'post_parent' => int 0
-      public 'guid' => string 'http://exempel.se/?post_type=kulturkatalog&#038;p=736' (length=53)
+      public 'guid' => string 'http://exempel.se/?post_type=kulturprogram&#038;p=736' (length=53)
       public 'menu_order' => int 0
-      public 'post_type' => string 'kulturkatalog' (length=13)
+      public 'post_type' => string 'kulturprogram' (length=13)
       public 'post_mime_type' => string '' (length=0)
       public 'comment_count' => string '0' (length=1)
       public 'filter' => string 'raw' (length=3)
-      public 'url' => string 'http://exempel.se/kulturkatalog/extremist-kul-en-clowndansforestallning/' (length=72)
+      public 'url' => string 'http://exempel.se/kulturprogram/extremist-kul-en-clowndansforestallning/' (length=72)
       public 'image' => string '' (length=0)
       public 'image_url' => boolean false
       public 'date' => string '2019-02-15' (length=10)
@@ -171,13 +171,13 @@ array (size=3)
       public 'post_modified_gmt' => string '2019-03-13 13:44:16' (length=19)
       public 'post_content_filtered' => string '' (length=0)
       public 'post_parent' => int 0
-      public 'guid' => string 'http://exempel.se/?post_type=kulturkatalog&#038;p=608' (length=53)
+      public 'guid' => string 'http://exempel.se/?post_type=kulturprogram&#038;p=608' (length=53)
       public 'menu_order' => int 0
-      public 'post_type' => string 'kulturkatalog' (length=13)
+      public 'post_type' => string 'kulturprogram' (length=13)
       public 'post_mime_type' => string '' (length=0)
       public 'comment_count' => string '0' (length=1)
       public 'filter' => string 'raw' (length=3)
-      public 'url' => string 'http://exempel.se/kulturkatalog/lar-dig-jonglera/' (length=50)
+      public 'url' => string 'http://exempel.se/kulturprogram/lar-dig-jonglera/' (length=50)
       public 'image' => string '' (length=0)
       public 'image_url' => boolean false
       public 'date' => string '2019-02-13' (length=10)
@@ -238,13 +238,13 @@ array (size=2)
           public 'post_modified_gmt' => string '2019-03-25 15:50:43' (length=19)
           public 'post_content_filtered' => string '' (length=0)
           public 'post_parent' => int 0
-          public 'guid' => string 'http://exempel.se/?post_type=kulturkatalog&#038;p=3621' (length=54)
+          public 'guid' => string 'http://exempel.se/?post_type=kulturprogram&#038;p=3621' (length=54)
           public 'menu_order' => int 0
-          public 'post_type' => string 'kulturkatalog' (length=13)
+          public 'post_type' => string 'kulturprogram' (length=13)
           public 'post_mime_type' => string '' (length=0)
           public 'comment_count' => string '0' (length=1)
           public 'filter' => string 'raw' (length=3)
-          public 'url' => string 'http://exempel.se/kulturkatalog/the-playground-2-6-ar/' (length=52)
+          public 'url' => string 'http://exempel.se/kulturprogram/the-playground-2-6-ar/' (length=52)
           public 'labels' => 
             array (size=1)
               0 => 
@@ -273,13 +273,13 @@ array (size=2)
           public 'post_modified_gmt' => string '2019-03-25 15:51:12' (length=19)
           public 'post_content_filtered' => string '' (length=0)
           public 'post_parent' => int 0
-          public 'guid' => string 'http://exempel.se/?post_type=kulturkatalog&#038;p=4038' (length=54)
+          public 'guid' => string 'http://exempel.se/?post_type=kulturprogram&#038;p=4038' (length=54)
           public 'menu_order' => int 0
-          public 'post_type' => string 'kulturkatalog' (length=13)
+          public 'post_type' => string 'kulturprogram' (length=13)
           public 'post_mime_type' => string '' (length=0)
           public 'comment_count' => string '0' (length=1)
           public 'filter' => string 'raw' (length=3)
-          public 'url' => string 'http://exempel.se/kulturkatalog/vilja-vaxa/' (length=41)
+          public 'url' => string 'http://exempel.se/kulturprogram/vilja-vaxa/' (length=41)
           public 'labels' => 
             array (size=1)
               0 => 
