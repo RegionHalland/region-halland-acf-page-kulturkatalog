@@ -5,13 +5,11 @@
 		<div class="center rh-hero">
 			<img class="rh-image-hero" src="{{ get_the_post_thumbnail_url() }}" alt="">
 			<div class="rh-caption-hero">
-				<h5 class="rh-caption-hero-title">
-					{{ get_the_title() }}
-				</h5>
+				{{ get_the_title() }}
 			</div>
 		</div>
 
-		<div class="center px4 pt3 pb4" style="max-width: 1440px;">
+		<div class="center px4 pt3 pb4 rh-article" style="max-width: 1440px;">
 			<div class="left-align">
 				<div class="">
 					@while(have_posts()) @php(the_post())
@@ -19,7 +17,9 @@
 						<div class="col col-12 md-col-9 pr4">
 							<h1 class="">{{ get_the_title() }}</h1>
 							<p>{{ the_content() }}</p>
+							<p class="pt2">
 							@include('partials.author-info')
+							</p>
 						</div>
 						<div class="col col-12 md-col-3">
 							<div class="" >
@@ -55,7 +55,7 @@
                                         @php($arrLabels = get_region_halland_acf_page_kulturprogram_type_labels())
                                         @if(isset($arrLabels))
                                             @foreach ($arrLabels as $label)
-                                                {{ $label['label'] }},
+                                                {{ $label['label'] }}@if ($loop->last) @else,@endif
                                             @endforeach
                                         @endif
 								    </p>

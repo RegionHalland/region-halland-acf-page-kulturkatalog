@@ -291,6 +291,11 @@ array (size=2)
 
 ## Versionhistorik
 
+### 2.1.0
+- Lagt till "Litteratur" som ny programtyp
+- Uppdaterade vy-filer
+- Sortering i bokstavordning för respektive program-array
+
 ### 2.0.0
 - Ändrat namn från kulturkatalog till kulturprogram
 - Fältet speltid heter istället längd
