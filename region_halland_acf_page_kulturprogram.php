@@ -6,7 +6,7 @@
 	/*
 	Plugin Name: Region Halland ACF Page Kulturprogram
 	Description: ACF-fält för extra fält nederst på en kultur-sida
-	Version: 2.1.0
+	Version: 2.1.1
 	Author: Roland Hydén
 	License: MIT
 	Text Domain: regionhalland
@@ -87,10 +87,10 @@
 			                2 => __('Film', 'regionhalland'),
 			                3 => __('Konst', 'regionhalland'),
 			                4 => __('Kulturarv', 'regionhalland'),
+			                8 => __('Litteratur', 'regionhalland'),
 			                5 => __('Musik', 'regionhalland'),
 			                6 => __('Slöjd', 'regionhalland'),
 			                7 => __('Teater', 'regionhalland'),
-			                8 => __('Litteratur', 'regionhalland'),
 			            ),
 			            'default_value' => array(
 			            ),
@@ -415,6 +415,11 @@
 			           'page'  => $myPage
 			        ));
 				}
+				if ($label['label'] == "Litteratur") {
+					array_push($myLitteratur, array(
+			           'page'  => $myPage
+			        ));
+				}
 				if ($label['label'] == "Musik") {
 					array_push($myMusik, array(
 			           'page'  => $myPage
@@ -430,11 +435,6 @@
 			           'page'  => $myPage
 			        ));
 				}
-				if ($label['label'] == "Litteratur") {
-					array_push($myLitteratur, array(
-			           'page'  => $myPage
-			        ));
-				}
 			}
 		}
 
@@ -443,10 +443,10 @@
 		usort($myFilm, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		usort($myKonst, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		usort($myKulturarv, 'region_halland_acf_page_kulturprogram_sort_by_title');
+		usort($myLitteratur, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		usort($myMusik, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		usort($mySlojd, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		usort($myTeater, 'region_halland_acf_page_kulturprogram_sort_by_title');
-		usort($myLitteratur, 'region_halland_acf_page_kulturprogram_sort_by_title');
 		
 		// Dela upp i arrayer per label	
 		$myMultiPages = array();
@@ -454,10 +454,10 @@
 		$myMultiPages['film'] = $myFilm;
 		$myMultiPages['konst'] = $myKonst;
 		$myMultiPages['kulturarv'] = $myKulturarv;
+		$myMultiPages['litteratur'] = $myLitteratur;
 		$myMultiPages['musik'] = $myMusik;
 		$myMultiPages['slojd'] = $mySlojd;
 		$myMultiPages['teater'] = $myTeater;
-		$myMultiPages['litteratur'] = $myLitteratur;
 		
 		// Returnera array med alla poster
 		return $myMultiPages;

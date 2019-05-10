@@ -291,6 +291,9 @@ array (size=2)
 
 ## Versionhistorik
 
+### 2.1.1
+- Sorterat om alla programtyper i bokstavsordning
+
 ### 2.1.0
 - Lagt till "Litteratur" som ny programtyp
 - Uppdaterade vy-filer
