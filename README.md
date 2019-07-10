@@ -14,6 +14,16 @@ OBS! Listan med poster visas på sidan "archive-kulturprogram.blade.php"
 
 Båda dessa filer finns med i foldern "views"
 
+
+## Licensmodell
+
+Denna plugin använder licensmodell GPL-3.0. Du kan läsa mer om denna licensmodell på:
+```sh
+A) Gnu.org (https://www.gnu.org/licenses/gpl-3.0.html)
+B) Wikipedia (https://sv.wikipedia.org/wiki/GNU_General_Public_License)
+```
+
+
 ## Installation och aktivering
 
 ```sh
@@ -290,6 +300,9 @@ array (size=2)
 
 
 ## Versionhistorik
+
+### 2.2.0
+- Uppdaterat information om licensmodell
 
 ### 2.1.1
 - Sorterat om alla programtyper i bokstavsordning
