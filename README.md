@@ -17,10 +17,9 @@ Båda dessa filer finns med i foldern "views"
 
 ## Licensmodell
 
-Denna plugin använder licensmodell GPL-3.0. Du kan läsa mer om denna licensmodell på:
+Denna plugin använder licensmodell GPL-3.0. Du kan läsa mer om denna licensmodell via den medföljande filen:
 ```sh
-A) Gnu.org (https://www.gnu.org/licenses/gpl-3.0.html)
-B) Wikipedia (https://sv.wikipedia.org/wiki/GNU_General_Public_License)
+LICENSE (https://github.com/RegionHalland/region-halland-acf-page-kulturprogram/blob/master/LICENSE)
 ```
 
 
@@ -300,6 +299,9 @@ array (size=2)
 
 
 ## Versionhistorik
+
+### 2.3.0
+- Bifogat fil med licensmodell
 
 ### 2.2.0
 - Uppdaterat information om licensmodell
